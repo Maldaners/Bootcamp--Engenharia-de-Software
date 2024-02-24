@@ -2,7 +2,6 @@ import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { AppModule } from './app.module';
-//import { TransformInterceptor } from './utils/interceptors/transform.interceptors';
 import { join } from 'path';
 import { SwaggerUtils } from './utils/swagger.utils';
 import { DIRETORIO_IMAGENS_NOME_PASTA } from './app/utils/diretorio.utils';
@@ -12,7 +11,6 @@ async function bootstrap() {
 
   app.setGlobalPrefix('/api/v1');
   app.useGlobalPipes(new ValidationPipe());
-  //app.useGlobalInterceptors(new TransformInterceptor());
   app.enableCors();
   app.useStaticAssets(join(__dirname, '..', DIRETORIO_IMAGENS_NOME_PASTA), {
     index: false,

@@ -22,7 +22,7 @@ export class PetDTO {
     sexo: SexoPet;
 
     @ApiProperty()
-    @MaxLength(255)
+    @MaxLength(1000)
     @IsString()
     descricao: string;
 

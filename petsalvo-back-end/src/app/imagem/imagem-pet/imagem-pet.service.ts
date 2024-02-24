@@ -83,7 +83,8 @@ export class ImagemPetService {
 
     private async retornarImagensPorIdPet(idPet: number) {
         const listaImagemEntity = await this.model.find({
-            where: { idPet: idPet }
+            where: { idPet: idPet },
+            order: { idImagem: "ASC" }
         });
 
         if (listaImagemEntity.length == 0)

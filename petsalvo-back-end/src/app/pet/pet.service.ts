@@ -25,7 +25,7 @@ export class PetService {
     public async criar(idUsuario: number, petDto: PetDTO): Promise<CriaPetDTO> {
         const ongDto = await this.ongService.consultarPorId(idUsuario);
         await this.validarTipoPet(petDto.tipo);
-        await this.validarValorSexo(petDto.sexo);        
+        await this.validarValorSexo(petDto.sexo);
 
         return await this.model.save({ ...petDto, idOng: ongDto.idOng });;
     }
@@ -43,7 +43,8 @@ export class PetService {
     private async retornarPetDaOng(idOng: number, idPet: number): Promise<PetEntity> {
         const petEntity = await this.model.findOne({
             where: { idPet: idPet, idOng: idOng },
-            relations: { imagens: true, ong: { usuario: { imagem: true }, endereco: true } }
+            relations: { imagens: true, ong: { usuario: { imagem: true }, endereco: true } },
+            order: { imagens: { idImagem: "ASC" } }
         });
 
         if (!petEntity)
@@ -67,7 +68,8 @@ export class PetService {
     public async consultarTodosNaoAdotados(): Promise<ConsultaPetOngDTO[]> {
         const listaPetEntity = await this.model.find({
             where: { adotado: false },
-            relations: { imagens: true, ong: { usuario: { imagem: true }, endereco: true } }
+            relations: { imagens: true, ong: { usuario: { imagem: true }, endereco: true } },
+            order: { imagens: { idImagem: "ASC" } }
         });
 
         if (listaPetEntity.length == 0)
@@ -80,7 +82,8 @@ export class PetService {
         await this.ongService.consultarPorIdOng(idOng);
         const listaPetEntity = await this.model.find({
             where: { idOng: idOng },
-            relations: { imagens: true, ong: { usuario: { imagem: true }, endereco: true } }
+            relations: { imagens: true, ong: { usuario: { imagem: true }, endereco: true } },
+            order: { imagens: { idImagem: "ASC" } }
         });
 
         if (listaPetEntity.length == 0)

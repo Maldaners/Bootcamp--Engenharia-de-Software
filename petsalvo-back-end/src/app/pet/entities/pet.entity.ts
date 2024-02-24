@@ -23,7 +23,7 @@ export class PetEntity {
     @Column({ length: 1 })
     sexo: SexoPet;
 
-    @Column({ length: 255 })
+    @Column({ length: 1000 })
     descricao: string;
 
     @Column()

@@ -65,7 +65,8 @@ export class ProcessoAdocaoService {
 
         const listaProcessoAdocaoEntity = await this.model.find({
             where: { idAdotante: adotanteDto.idAdotante },
-            relations: { ong: { usuario: { imagem: true } }, pet: { imagens: true } }
+            relations: { ong: { usuario: { imagem: true } }, pet: { imagens: true } },
+            order: { pet: { imagens: { idImagem: "ASC" } } }
         });
 
         if (listaProcessoAdocaoEntity.length == 0)
@@ -125,7 +126,8 @@ export class ProcessoAdocaoService {
     private async retornarProcessoAdocaoParaAdotante(idAdotante: number, idOng: number, idPet: number): Promise<ConsultaProcessoAdocaoAdotanteDTO> {
         return await this.model.findOne({
             where: { idAdotante: idAdotante, idOng: idOng, idPet: idPet },
-            relations: { ong: { usuario: { imagem: true } }, pet: { imagens: true } }
+            relations: { ong: { usuario: { imagem: true } }, pet: { imagens: true } },
+            order: { pet: { imagens: { idImagem: "ASC" } } }
         });
     }
     //
@@ -142,7 +144,7 @@ export class ProcessoAdocaoService {
     }
 
     private async retornarParametrosFiltroStatus(idOng: number, idPet: number, filtroDto: FiltroProcessoAdocaoDTO) {
-        if (filtroDto == null ||  filtroDto.status == null || filtroDto.status.length == 0)
+        if (filtroDto == null || filtroDto.status == null || filtroDto.status.length == 0)
             return { idOng, idPet };
         else
             return { idOng, idPet, status: In(filtroDto.status) };
@@ -155,7 +157,8 @@ export class ProcessoAdocaoService {
 
         const listaProcessoAdocaoEntity = await this.model.find({
             where: await this.retornarParametrosFiltroStatus(ongDto.idOng, petDto.idPet, filtroDto),
-            relations: { adotante: { usuario: { imagem: true } }, pet: { imagens: true } }
+            relations: { adotante: { usuario: { imagem: true } }, pet: { imagens: true } },
+            order: { pet: { imagens: { idImagem: "ASC" } } }
         });
 
         if (listaProcessoAdocaoEntity.length == 0)
@@ -169,7 +172,8 @@ export class ProcessoAdocaoService {
 
         const listaProcessoAdocaoEntity = await this.model.find({
             where: { idOng: ongDto.idOng },
-            relations: { adotante: { usuario: { imagem: true } }, pet: { imagens: true } }
+            relations: { adotante: { usuario: { imagem: true } }, pet: { imagens: true } },
+            order: { pet: { imagens: { idImagem: "ASC" } } }
         });
 
         if (listaProcessoAdocaoEntity.length == 0)
@@ -279,7 +283,8 @@ export class ProcessoAdocaoService {
     private async retornarProcessoAdocaoParaOng(idOng: number, idAdotante: number, idPet: number): Promise<ConsultaProcessoAdocaoOngDTO> {
         return await this.model.findOne({
             where: { idOng: idOng, idAdotante: idAdotante, idPet: idPet },
-            relations: { adotante: { usuario: { imagem: true } }, pet: { imagens: true } }
+            relations: { adotante: { usuario: { imagem: true } }, pet: { imagens: true } },
+            order: { pet: { imagens: { idImagem: "ASC" } } }
         });
     }
     //
