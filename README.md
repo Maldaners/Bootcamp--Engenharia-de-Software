@@ -77,12 +77,14 @@ A documentação completa da API do PetSalvo se encontra no [endereço local do 
 ## Persistência de dados iniciais
 
 Na pasta "scripts_sql", encontrada na raiz deste projeto, temos o arquivo de nome "SCRIPT_PADRAO_FORMULARIO_ADOTANTE.sql". Os comandos deste <i>script</i> SQL devem ser executados para a criação do formulário padrão de adoção dos pets.
+<br>
+<hr>
+<br>
+<hr>
 
 
+# AUTOMAÇÃO DE TESTES
 
-## AUTOMAÇÃO DE TESTES
-
-# instalar ferramentas 
 ### OBS este projeto precisa de Python instalado na máquina 
 
 
