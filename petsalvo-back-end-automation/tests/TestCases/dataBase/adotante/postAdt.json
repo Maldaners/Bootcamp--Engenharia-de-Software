@@ -1,0 +1,20 @@
+{
+    "usuario": {
+        "email": "adotante_700_@email.com",
+        "senha": "Abcd@1234",
+        "nome": "Adotante",
+        "telefone": "11963852741",
+        "termos": true
+    },
+    "dataNasc": "1935-01-08",
+    "cpf": "58298713897",
+    "endereco": {
+        "cep": "12345200",
+        "rua": "Rua do SBT",
+        "bairro": "Vila do Chaves",
+        "numero": 71,
+        "cidade": "Santos",
+        "estado": "São Paulo",
+        "complemento": "De frente com a praia"
+    }
+}

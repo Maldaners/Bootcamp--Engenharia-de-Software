@@ -1,0 +1,2100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.10.11 on darwin)" generated="20240123 20:56:26.898" rpa="false" schemaversion="3">
+<suite id="s1" name="Petsalvo-Back-End-Automation" source="/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation">
+<suite id="s1-s1" name="Tests" source="/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/tests">
+<suite id="s1-s1-s1" name="TestCases" source="/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/tests/TestCases">
+<suite id="s1-s1-s1-s1" name="Tests" source="/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/tests/TestCases/tests">
+<suite id="s1-s1-s1-s1-s1" name="Login" source="/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/tests/TestCases/tests/login.robot">
+<kw name="Gerar token" library="hooks" type="SETUP">
+<kw name="Log" library="BuiltIn">
+<arg>${Environment.local}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240123 20:56:27.280" level="INFO">local</msg>
+<status status="PASS" starttime="20240123 20:56:27.278" endtime="20240123 20:56:27.282"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>token</arg>
+<arg>${Environment.url_token}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20240123 20:56:27.283" level="INFO">Creating Session using : alias=token, url=http://localhost:8080/api/v1, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20240123 20:56:27.282" endtime="20240123 20:56:27.284"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{BODY_TOKEN}</var>
+<arg>authorizaton=Bearer ${Environment.token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:27.287" level="INFO">&amp;{BODY_TOKEN} = { authorizaton=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFudGVfMV9AZW1haWwuY29tIiwibm9tZSI6IkVESVRBRE8iLCJ0aXBvVXN1YXJpbyI6MywiaWF0IjoxNzA0OTI2NzI3LCJleHAiOjE3M...</msg>
+<status status="PASS" starttime="20240123 20:56:27.284" endtime="20240123 20:56:27.287"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY_TOKEN}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240123 20:56:27.289" level="INFO">${BODY_TOKEN} = {'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFudGVfMV9AZW1haWwuY29tIiwibm9tZSI6IkVESVRBRE8iLCJ0aXBvVXN1YXJpbyI6MywiaWF0IjoxNzA0OTI2NzI3LCJleHAiOj...</msg>
+<status status="PASS" starttime="20240123 20:56:27.288" endtime="20240123 20:56:27.289"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${BODY_TOKEN}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:27.289" endtime="20240123 20:56:27.290"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:27.278" endtime="20240123 20:56:27.290"/>
+</kw>
+<test id="s1-s1-s1-s1-s1-t1" name="CN01 - Validar LOGIN feito com sucesso" line="13">
+<kw name="Dado que possuo um LOGIN válido" library="post">
+<kw name="Gerar request body login" library="bodyRequests">
+<arg>${email}</arg>
+<arg>${senha}</arg>
+<kw name="Get JSON login" library="hooks">
+<var>${testFile}</var>
+<arg>bodyLogin.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/login/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:27.298" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLogin.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLogin.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:27.301" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLogin.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:27.297" endtime="20240123 20:56:27.311"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.311" endtime="20240123 20:56:27.312"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.295" endtime="20240123 20:56:27.312"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${test}</var>
+<arg>${testFile}</arg>
+<arg>email</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.312" endtime="20240123 20:56:27.312"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${body}</var>
+<arg>${testFile}</arg>
+<arg>senha</arg>
+<arg>${senha}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.313" endtime="20240123 20:56:27.313"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.313" endtime="20240123 20:56:27.314"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.314" endtime="20240123 20:56:27.314"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.314" endtime="20240123 20:56:27.315"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.315" endtime="20240123 20:56:27.315"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.295" endtime="20240123 20:56:27.316"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.292" endtime="20240123 20:56:27.316"/>
+</kw>
+<kw name="Quando realizo uma chamada POST na rota de LOGIN" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.317" endtime="20240123 20:56:27.317"/>
+</kw>
+<kw name="Então a api deverá retornar 201" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:27.317" endtime="20240123 20:56:27.318"/>
+</kw>
+<kw name="E o login deve ser feito com sucesso" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.319" endtime="20240123 20:56:27.319"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.291" endtime="20240123 20:56:27.320">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLogin.json'</status>
+</test>
+<test id="s1-s1-s1-s1-s1-t2" name="CN02 - Validar LOGIN feito com email inválido" line="19">
+<kw name="Dado que possuo um email inválido" library="post">
+<kw name="Gerar request body login Invalido" library="bodyRequests">
+<arg>${emailInvalido}</arg>
+<arg>${senha}</arg>
+<kw name="Get JSON login" library="hooks">
+<var>${testFile}</var>
+<arg>bodyLoginInvalido.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/login/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:27.330" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginInvalido.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginInvalido.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:27.331" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginInvalido.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:27.329" endtime="20240123 20:56:27.331"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.332" endtime="20240123 20:56:27.332"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.328" endtime="20240123 20:56:27.332"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${test}</var>
+<arg>${testFile}</arg>
+<arg>email</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.332" endtime="20240123 20:56:27.333"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${body}</var>
+<arg>${testFile}</arg>
+<arg>senha</arg>
+<arg>${senha}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.333" endtime="20240123 20:56:27.333"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.333" endtime="20240123 20:56:27.334"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.337" endtime="20240123 20:56:27.338"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.339" endtime="20240123 20:56:27.341"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.342" endtime="20240123 20:56:27.342"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.327" endtime="20240123 20:56:27.343"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.325" endtime="20240123 20:56:27.343"/>
+</kw>
+<kw name="Quando realizo uma chamada POST na rota de LOGIN" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.344" endtime="20240123 20:56:27.344"/>
+</kw>
+<kw name="Então a api deverá retornar 401" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:27.345" endtime="20240123 20:56:27.345"/>
+</kw>
+<kw name="E o login não deve ser feito com sucesso" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.345" endtime="20240123 20:56:27.345"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.324" endtime="20240123 20:56:27.348">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginInvalido.json'</status>
+</test>
+<test id="s1-s1-s1-s1-s1-t3" name="CN03 - Validar LOGIN feito com senha inválida" line="25">
+<kw name="Dado que possuo uma senha inválida" library="post">
+<kw name="Gerar request body login Invalido" library="bodyRequests">
+<arg>${email}</arg>
+<arg>${senhaInvalida}</arg>
+<kw name="Get JSON login" library="hooks">
+<var>${testFile}</var>
+<arg>bodyLoginInvalido.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/login/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:27.357" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginInvalido.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginInvalido.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:27.357" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginInvalido.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:27.356" endtime="20240123 20:56:27.358"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.358" endtime="20240123 20:56:27.359"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.355" endtime="20240123 20:56:27.359"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${test}</var>
+<arg>${testFile}</arg>
+<arg>email</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.360" endtime="20240123 20:56:27.360"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${body}</var>
+<arg>${testFile}</arg>
+<arg>senha</arg>
+<arg>${senha}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.361" endtime="20240123 20:56:27.361"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.361" endtime="20240123 20:56:27.361"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.361" endtime="20240123 20:56:27.362"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.362" endtime="20240123 20:56:27.362"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.362" endtime="20240123 20:56:27.362"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.352" endtime="20240123 20:56:27.363"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.351" endtime="20240123 20:56:27.364"/>
+</kw>
+<kw name="Quando realizo uma chamada POST na rota de LOGIN" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.364" endtime="20240123 20:56:27.364"/>
+</kw>
+<kw name="Então a api deverá retornar 401" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:27.365" endtime="20240123 20:56:27.365"/>
+</kw>
+<kw name="E o login não deve ser feito com sucesso" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.374" endtime="20240123 20:56:27.375"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.350" endtime="20240123 20:56:27.377">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginInvalido.json'</status>
+</test>
+<test id="s1-s1-s1-s1-s1-t4" name="CN04 - Validar LOGIN feito com email sem @" line="31">
+<kw name="Dado que possuo um email sem a fromacao correta" library="post">
+<kw name="Gerar request body login sem arroba" library="bodyRequests">
+<arg>${emailsem@}</arg>
+<arg>${senha}</arg>
+<kw name="Get JSON login" library="hooks">
+<var>${testFile}</var>
+<arg>bodyLoginSemArroba.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/login/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:27.382" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginSemArroba.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginSemArroba.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:27.382" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginSemArroba.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:27.381" endtime="20240123 20:56:27.383"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.383" endtime="20240123 20:56:27.383"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.380" endtime="20240123 20:56:27.383"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${test}</var>
+<arg>${testFile}</arg>
+<arg>email</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.384" endtime="20240123 20:56:27.384"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${body}</var>
+<arg>${testFile}</arg>
+<arg>senha</arg>
+<arg>${senha}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.384" endtime="20240123 20:56:27.384"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.385" endtime="20240123 20:56:27.385"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.386" endtime="20240123 20:56:27.386"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY_LOGIN}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.387" endtime="20240123 20:56:27.387"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.387" endtime="20240123 20:56:27.387"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.379" endtime="20240123 20:56:27.388"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.378" endtime="20240123 20:56:27.388"/>
+</kw>
+<kw name="Quando realizo uma chamada POST na rota de LOGIN" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.388" endtime="20240123 20:56:27.389"/>
+</kw>
+<kw name="Então a api deverá retornar 400" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:27.389" endtime="20240123 20:56:27.389"/>
+</kw>
+<kw name="E o login não deve ser feito com sucesso" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.389" endtime="20240123 20:56:27.390"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.377" endtime="20240123 20:56:27.391">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginSemArroba.json'</status>
+</test>
+<doc>Casos de teste da API de LOGIN</doc>
+<status status="FAIL" starttime="20240123 20:56:26.977" endtime="20240123 20:56:27.391"/>
+</suite>
+<suite id="s1-s1-s1-s1-s2" name="Ongs" source="/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/tests/TestCases/tests/ongs.robot">
+<kw name="Gerar token ONGs" library="hooks" type="SETUP">
+<kw name="Log" library="BuiltIn">
+<arg>${Environment.local}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240123 20:56:27.477" level="INFO">local</msg>
+<status status="PASS" starttime="20240123 20:56:27.467" endtime="20240123 20:56:27.480"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>token</arg>
+<arg>${Environment.url_token}/autenticacao/login</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20240123 20:56:27.484" level="INFO">Creating Session using : alias=token, url=http://localhost:8080/api/v1/autenticacao/login, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20240123 20:56:27.481" endtime="20240123 20:56:27.491"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{BODY_TOKEN}</var>
+<arg>email=${Environment.emailOng}</arg>
+<arg>senha=${Environment.senhaOng}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:27.505" level="INFO">&amp;{BODY_TOKEN} = { email=ong_1_@email.com | senha=Abcd@1234 }</msg>
+<status status="PASS" starttime="20240123 20:56:27.492" endtime="20240123 20:56:27.506"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{HEADERS_TOKEN}</var>
+<arg>Content_Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:27.509" level="INFO">&amp;{HEADERS_TOKEN} = { Content_Type=application/json }</msg>
+<status status="PASS" starttime="20240123 20:56:27.507" endtime="20240123 20:56:27.510"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${RETORNO_TOKENong}</var>
+<arg>token</arg>
+<arg>url=</arg>
+<arg>data=${BODY_TOKEN}</arg>
+<arg>headers=${HEADERS_TOKEN}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20240123 20:56:27.740" level="INFO">POST Request : url=http://localhost:8080/api/v1/autenticacao/login 
+ path_url=/api/v1/autenticacao/login 
+ headers={'User-Agent': 'python-requests/2.29.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content_Type': 'application/json', 'Content-Length': '42', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=email=ong_1_%40email.com&amp;senha=Abcd%401234 
+ </msg>
+<msg timestamp="20240123 20:56:27.741" level="INFO">POST Response : url=http://localhost:8080/api/v1/autenticacao/login 
+ status=201, reason=Created 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '278', 'ETag': 'W/"116-xayGpo7LzlCE8Z359VKAfDYegZY"', 'Date': 'Tue, 23 Jan 2024 23:56:27 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJpYXQiOjE3MDYwNTQxODcsImV4cCI6MTcwNjA1Nzc4N30.qY0ohkHvNBfuQZdvO4zi2RKNvuqMBRqapcrsqyQDjCA","tipoUsuario":"ONG"} 
+ </msg>
+<msg timestamp="20240123 20:56:27.742" level="INFO">${RETORNO_TOKENong} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:27.513" endtime="20240123 20:56:27.742"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${RETORNO_TOKENong}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:27.743" level="INFO">${RETORNO_TOKENong} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:27.742" endtime="20240123 20:56:27.743"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RETORNO_TOKENong}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:27.743" endtime="20240123 20:56:27.745"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RETORNO_TOKENong.json()['tipoUsuario']}</arg>
+<arg>ONG</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20240123 20:56:27.746" endtime="20240123 20:56:27.747"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RETORNO_TOKENong.json()['tipoUsuario']}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:27.748" endtime="20240123 20:56:27.752"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RETORNO_TOKENong.json()['accessToken']}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:27.753" endtime="20240123 20:56:27.756"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:27.466" endtime="20240123 20:56:27.757"/>
+</kw>
+<test id="s1-s1-s1-s1-s2-t1" name="CN01 - Validar criação de ong feito com sucesso" line="12">
+<kw name="Dado que possuo uma ong" library="post">
+<kw name="Gerar request body ong" library="bodyRequests">
+<arg>${emailong}</arg>
+<arg>${senha}</arg>
+<kw name="Get JSON ong" library="hooks">
+<var>${testFile}</var>
+<arg>postOng.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/ong/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:27.763" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:27.764" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:27.761" endtime="20240123 20:56:27.767"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.767" endtime="20240123 20:56:27.768"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.760" endtime="20240123 20:56:27.769"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${test}</var>
+<arg>${testFile}</arg>
+<arg>email</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.769" endtime="20240123 20:56:27.771"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${body}</var>
+<arg>${testFile}</arg>
+<arg>senha</arg>
+<arg>${senha}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.774" endtime="20240123 20:56:27.775"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.775" endtime="20240123 20:56:27.776"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.777" endtime="20240123 20:56:27.777"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.778" endtime="20240123 20:56:27.778"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.778" endtime="20240123 20:56:27.778"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.760" endtime="20240123 20:56:27.779"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.759" endtime="20240123 20:56:27.780"/>
+</kw>
+<kw name="Quando realizo uma chamada POST na rota de cria ongs" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.782" endtime="20240123 20:56:27.782"/>
+</kw>
+<kw name="Então a api deverá retornar 201" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:27.784" endtime="20240123 20:56:27.784"/>
+</kw>
+<kw name="E a criacao deve ser feita com sucesso" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.787" endtime="20240123 20:56:27.788"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.757" endtime="20240123 20:56:27.789">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json'</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t2" name="CN02 - Validar criação de ong feito com conta ja criada" line="18">
+<kw name="Dado que possuo uma ong mas ja criado" library="post">
+<kw name="Gerar request body ong" library="bodyRequests">
+<arg>${emailong}</arg>
+<arg>${senha}</arg>
+<kw name="Get JSON ong" library="hooks">
+<var>${testFile}</var>
+<arg>postOng.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/ong/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:27.800" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:27.801" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:27.799" endtime="20240123 20:56:27.801"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.802" endtime="20240123 20:56:27.802"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.798" endtime="20240123 20:56:27.802"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${test}</var>
+<arg>${testFile}</arg>
+<arg>email</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.803" endtime="20240123 20:56:27.803"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${body}</var>
+<arg>${testFile}</arg>
+<arg>senha</arg>
+<arg>${senha}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.804" endtime="20240123 20:56:27.804"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.804" endtime="20240123 20:56:27.804"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.804" endtime="20240123 20:56:27.804"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.805" endtime="20240123 20:56:27.805"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.805" endtime="20240123 20:56:27.805"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.797" endtime="20240123 20:56:27.805"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.797" endtime="20240123 20:56:27.806"/>
+</kw>
+<kw name="Quando realizo uma chamada POST na rota de cria ongs" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.809" endtime="20240123 20:56:27.810"/>
+</kw>
+<kw name="Então a api deverá retornar 400" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:27.814" endtime="20240123 20:56:27.814"/>
+</kw>
+<kw name="E a criacao nao deve ser feita com sucesso" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.816" endtime="20240123 20:56:27.819"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.795" endtime="20240123 20:56:27.823">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json'</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t3" name="CN03 - Validar criação de ong feito com email sem @" line="24">
+<kw name="Dado que tento criar uma ong com email sem @" library="post">
+<kw name="Gerar request body ong sem arroba" library="bodyRequests">
+<arg>${emailsem@}</arg>
+<arg>${senha}</arg>
+<kw name="Get JSON ong" library="hooks">
+<var>${testFile}</var>
+<arg>postOngsem@.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/ong/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:27.838" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOngsem@.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOngsem@.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:27.839" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOngsem@.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:27.835" endtime="20240123 20:56:27.839"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.840" endtime="20240123 20:56:27.841"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.834" endtime="20240123 20:56:27.841"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${test}</var>
+<arg>${testFile}</arg>
+<arg>email</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.841" endtime="20240123 20:56:27.841"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${body}</var>
+<arg>${testFile}</arg>
+<arg>senha</arg>
+<arg>${senha}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.842" endtime="20240123 20:56:27.842"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.842" endtime="20240123 20:56:27.842"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.843" endtime="20240123 20:56:27.843"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.843" endtime="20240123 20:56:27.844"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.844" endtime="20240123 20:56:27.844"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.833" endtime="20240123 20:56:27.844"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.832" endtime="20240123 20:56:27.845"/>
+</kw>
+<kw name="Quando realizo uma chamada POST na rota de cria ongs" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.846" endtime="20240123 20:56:27.847"/>
+</kw>
+<kw name="Então a api deverá retornar 400" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:27.850" endtime="20240123 20:56:27.851"/>
+</kw>
+<kw name="E a criacao nao deve ser feita com sucesso" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.852" endtime="20240123 20:56:27.853"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.829" endtime="20240123 20:56:27.855">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOngsem@.json'</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t4" name="CN04 - Validar criação de ong feito com cep e cpf como numeros" line="30">
+<kw name="Dado que tento criar uma ong com cep e cpf como numeros" library="post">
+<kw name="Gerar request body ong com cep e cpf como numeros" library="bodyRequests">
+<arg>${email}</arg>
+<arg>${senha}</arg>
+<kw name="Get JSON ong" library="hooks">
+<var>${testFile}</var>
+<arg>postOngNoString.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/ong/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:27.862" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOngNoString.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOngNoString.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:27.862" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOngNoString.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:27.861" endtime="20240123 20:56:27.864"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.864" endtime="20240123 20:56:27.865"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.860" endtime="20240123 20:56:27.865"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${test}</var>
+<arg>${testFile}</arg>
+<arg>email</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.865" endtime="20240123 20:56:27.865"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${body}</var>
+<arg>${testFile}</arg>
+<arg>senha</arg>
+<arg>${senha}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:27.866" endtime="20240123 20:56:27.866"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.866" endtime="20240123 20:56:27.866"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.866" endtime="20240123 20:56:27.867"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.867" endtime="20240123 20:56:27.867"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:27.867" endtime="20240123 20:56:27.867"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.860" endtime="20240123 20:56:27.868"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.858" endtime="20240123 20:56:27.871"/>
+</kw>
+<kw name="Quando realizo uma chamada POST na rota de cria ongs" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.875" endtime="20240123 20:56:27.876"/>
+</kw>
+<kw name="Então a api deverá retornar 400" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:27.877" endtime="20240123 20:56:27.877"/>
+</kw>
+<kw name="E a criacao nao deve ser feita com sucesso" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:27.880" endtime="20240123 20:56:27.882"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:27.856" endtime="20240123 20:56:27.886">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOngNoString.json'</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t5" name="CN01 - Validar busca de todas as ONGs" line="39">
+<kw name="Quando realizo uma chamada de busca de todas as ONGs" library="get">
+<kw name="chamada_GET_ONG" library="routes">
+<arg>${Environment.base_url}/ong/todas</arg>
+<kw name="Criar secao ong" library="hooks">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{HEADERS}</var>
+<arg>Content_Type=application/json</arg>
+<arg>authorizaton=${RETORNO_TOKENong.json()['accessToken']}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:27.897" level="INFO">&amp;{HEADERS} = { Content_Type=application/json | authorizaton=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJp...</msg>
+<status status="PASS" starttime="20240123 20:56:27.894" endtime="20240123 20:56:27.897"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{SESSION}</var>
+<arg>alias=ambiente</arg>
+<arg>url=${Environment.base_url}</arg>
+<arg>headers=${HEADERS}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:27.899" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWl...</msg>
+<status status="PASS" starttime="20240123 20:56:27.898" endtime="20240123 20:56:27.899"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>&amp;{SESSION}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20240123 20:56:27.900" level="INFO">Creating Session using : alias=ambiente, url=http://localhost:8080/api/v1, headers={'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJpYXQiOjE3MDYwNTQxODcsImV4cCI6MTcwNjA1Nzc4N30.qY0ohkHvNBfuQZdvO4zi2RKNvuqMBRqapcrsqyQDjCA'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20240123 20:56:27.900" endtime="20240123 20:56:27.901"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>&amp;{SESSION}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:27.903" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWl...</msg>
+<status status="PASS" starttime="20240123 20:56:27.901" endtime="20240123 20:56:27.904"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:27.894" endtime="20240123 20:56:27.905"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${RESPONSE}</var>
+<arg>alias=${SESSION.alias}</arg>
+<arg>url=${url}</arg>
+<arg>expected_status=anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20240123 20:56:27.959" level="INFO">GET Request : url=http://localhost:8080/api/v1/ong/todas 
+ path_url=/api/v1/ong/todas 
+ headers={'User-Agent': 'python-requests/2.29.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJpYXQiOjE3MDYwNTQxODcsImV4cCI6MTcwNjA1Nzc4N30.qY0ohkHvNBfuQZdvO4zi2RKNvuqMBRqapcrsqyQDjCA'} 
+ body=None 
+ </msg>
+<msg timestamp="20240123 20:56:27.959" level="INFO">GET Response : url=http://localhost:8080/api/v1/ong/todas 
+ status=200, reason=OK 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '3202', 'ETag': 'W/"c82-NGsOJu2xmbdOLOaPTSLcmja2fr4"', 'Date': 'Tue, 23 Jan 2024 23:56:27 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body=[{"idOng":1,"site":"www.ong.com.br","cnpj":"12345678910111","idUsuario":1,"usuario":{"email":"ong_1_@email.com","senha":"$2b$10$rj3NOYjijzcKkRvGEISLce4x1Wt2Nexi4aQekOPo1jkaqDcM51gWO","idUsuario":1,"nome":"Ong","telefone":"11963852741","tipoUsuario":2,"termos":true,"imagem":null},"endereco":{"idEndereco":1,"cep":"1234520","rua":"Rua do SBT","bairro":"Vila do Chaves","numero":71,"cidade":"Santos","estado":"São Paulo","complemento":"De frente com a praia","idUsuario":1},"status":[{"idStatus":4,"nome":"Aceita Pets","idOng":1},{"idStatus":5,"nome":"Aceita Ração","idOng":1},{"idStatus":1,"nome":"Aceita Voluntários","idOng":1},{"idStatus":3,"nome":"Aceita coleiras","idOng":1},{"idStatus":2,"nome":"Aceita petiscos","idOng":1}],"pix":[{"idPix":3,"tipoChave":1,"chave":"82734750007","idOng":1},{"idPix":5,"tipoChave":2,"chave":"25128954000105","idOng":1},{"idPix":1,"tipoChave":3,"chave":"011987654321","idOng":1},{"idPix":4,"tipoChave":4,"chave":"chave_pix@ong.com.br","idOng":1},{"idPix":2,"tipoChave":5,"chave":"dfa487afgadfa4k998adfa445cdgaa","idOng":1}]},{"idOng":2,"site":"www.ong.com.br","cnpj":"12345678910111","idUsuario":3,"usuario":{"email":"ong_6_@email.com","senha":"$2b$10$UFgzXWpxIxPkBIMu6Jka7ebYahEZRV7FjXVtxVp2SMxGST45Jm/9K","idUsuario":3,"nome":"Ong","telefone":"11963852741","tipoUsuario":2,"termos":true,"imagem":null},"endereco":{"idEndereco":3,"cep":"1234520","rua":"Rua do SBT","bairro":"Vila do Chaves","numero":71,"cidade":"Santos","estado":"São Paulo","complemento":"De frente com a praia","idUsuario":3},"status":[{"idStatus":6,"nome":"Aceita Pets","idOng":2},{"idStatus":10,"nome":"Aceita Ração","idOng":2},{"idStatus":7,"nome":"Aceita Voluntários","idOng":2},{"idStatus":8,"nome":"Aceita coleiras","idOng":2},{"idStatus":9,"nome":"Aceita petiscos","idOng":2}],"pix":[{"idPix":10,"tipoChave":1,"chave":"82734750007","idOng":2},{"idPix":6,"tipoChave":2,"chave":"25128954000105","idOng":2},{"idPix":7,"tipoChave":3,"chave":"011987654321","idOng":2},{"idPix":9,"tipoChave":4,"chave":"chave_pix@ong.com.br","idOng":2},{"idPix":8,"tipoChave":5,"chave":"dfa487afgadfa4k998adfa445cdgaa","idOng":2}]},{"idOng":3,"site":"www.ong.com.br","cnpj":"12345678910111","idUsuario":4,"usuario":{"email":"ong_9_@email.com","senha":"$2b$10$22GfOsw3sjPVAtTIiew2Q.YDz7BDS571xXYv0kEMusr4DHZoyMThC","idUsuario":4,"nome":"Ong","telefone":"11963852741","tipoUsuario":2,"termos":true,"imagem":null},"endereco":{"idEndereco":4,"cep":"1234520","rua":"Rua do SBT","bairro":"Vila do Chaves","numero":71,"cidade":"Santos","estado":"São Paulo","complemento":"De frente com a praia","idUsuario":4},"status":[{"idStatus":11,"nome":"Aceita Pets","idOng":3},{"idStatus":15,"nome":"Aceita Ração","idOng":3},{"idStatus":12,"nome":"Aceita Voluntários","idOng":3},{"idStatus":13,"nome":"Aceita coleiras","idOng":3},{"idStatus":14,"nome":"Aceita petiscos","idOng":3}],"pix":[{"idPix":11,"tipoChave":1,"chave":"82734750007","idOng":3},{"idPix":15,"tipoChave":2,"chave":"25128954000105","idOng":3},{"idPix":12,"tipoChave":3,"chave":"011987654321","idOng":3},{"idPix":13,"tipoChave":4,"chave":"chave_pix@ong.com.br","idOng":3},{"idPix":14,"tipoChave":5,"chave":"dfa487afgadfa4k998adfa445cdgaa","idOng":3}]}] 
+ </msg>
+<msg timestamp="20240123 20:56:27.961" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:27.905" endtime="20240123 20:56:27.961"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:27.962" level="INFO">${RESPONSE} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:27.961" endtime="20240123 20:56:27.962"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:27.893" endtime="20240123 20:56:27.962"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:27.890" endtime="20240123 20:56:27.962"/>
+</kw>
+<kw name="Então a api deverá retornar 200" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<kw name="Valida status_code" library="hooks">
+<arg>${statusCode}</arg>
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240123 20:56:27.974" level="INFO">200</msg>
+<status status="PASS" starttime="20240123 20:56:27.973" endtime="20240123 20:56:27.974"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:27.974" endtime="20240123 20:56:27.979"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<arg>${statusCode}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20240123 20:56:27.982" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:27.979" endtime="20240123 20:56:27.982"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:27.973" endtime="20240123 20:56:27.983"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:27.989" endtime="20240123 20:56:27.994"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:27.964" endtime="20240123 20:56:27.995"/>
+</kw>
+<kw name="E uma lista de ONGs" library="get">
+<kw name="validaReponse" library="hooks">
+<arg>${response}</arg>
+<if>
+<branch type="IF" condition="${RESPONSE.status_code} == 200">
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240123 20:56:28.002" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.001" endtime="20240123 20:56:28.002"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:28.006" endtime="20240123 20:56:28.008"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${Ret_String}</var>
+<arg>${RESPONSE}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20240123 20:56:28.011" level="INFO">${Ret_String} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.010" endtime="20240123 20:56:28.011"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:27.999" endtime="20240123 20:56:28.012"/>
+</branch>
+<branch type="ELSE IF" condition="${RESPONSE.status_code} == 201">
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.012" endtime="20240123 20:56:28.013"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE}\[mensagem]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.013" endtime="20240123 20:56:28.013"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${Ret_String}</var>
+<arg>${RESPONSE}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.013" endtime="20240123 20:56:28.014"/>
+</kw>
+<status status="NOT RUN" starttime="20240123 20:56:28.012" endtime="20240123 20:56:28.014"/>
+</branch>
+<branch type="ELSE IF" condition="${RESPONSE.status_code} == 204">
+<kw name="Log" library="BuiltIn">
+<arg>"204 - Sem Retorno"</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.015" endtime="20240123 20:56:28.016"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>"204 - Sem Retorno"</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.017" endtime="20240123 20:56:28.017"/>
+</kw>
+<status status="NOT RUN" starttime="20240123 20:56:28.014" endtime="20240123 20:56:28.017"/>
+</branch>
+<branch type="ELSE IF" condition="${RESPONSE.status_code} == 400">
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.022" endtime="20240123 20:56:28.022"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE}\[mensagem]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.025" endtime="20240123 20:56:28.026"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${Ret_String}</var>
+<arg>${RESPONSE}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.027" endtime="20240123 20:56:28.028"/>
+</kw>
+<status status="NOT RUN" starttime="20240123 20:56:28.018" endtime="20240123 20:56:28.028"/>
+</branch>
+<branch type="ELSE IF" condition="${RESPONSE.status_code} == 401">
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.031" endtime="20240123 20:56:28.032"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE}\[mensagem]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.033" endtime="20240123 20:56:28.033"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${Ret_String}</var>
+<arg>${RESPONSE}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.034" endtime="20240123 20:56:28.035"/>
+</kw>
+<status status="NOT RUN" starttime="20240123 20:56:28.028" endtime="20240123 20:56:28.044"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE}\[mensagem]</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.045" endtime="20240123 20:56:28.045"/>
+</kw>
+<status status="NOT RUN" starttime="20240123 20:56:28.044" endtime="20240123 20:56:28.046"/>
+</branch>
+<status status="PASS" starttime="20240123 20:56:27.999" endtime="20240123 20:56:28.046"/>
+</if>
+<status status="PASS" starttime="20240123 20:56:27.998" endtime="20240123 20:56:28.046"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:27.996" endtime="20240123 20:56:28.047"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:27.889" endtime="20240123 20:56:28.051"/>
+</test>
+<test id="s1-s1-s1-s1-s2-t6" name="CN02 - Validar busca de ONGs por ID" line="45">
+<kw name="Quando realizo uma chamada de busca passando o ID da ONG" library="get">
+<kw name="chamada_GET_ONG" library="routes">
+<arg>${Environment.base_url}/ong/usuario/1</arg>
+<kw name="Criar secao ong" library="hooks">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{HEADERS}</var>
+<arg>Content_Type=application/json</arg>
+<arg>authorizaton=${RETORNO_TOKENong.json()['accessToken']}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:28.083" level="INFO">&amp;{HEADERS} = { Content_Type=application/json | authorizaton=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJp...</msg>
+<status status="PASS" starttime="20240123 20:56:28.081" endtime="20240123 20:56:28.092"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{SESSION}</var>
+<arg>alias=ambiente</arg>
+<arg>url=${Environment.base_url}</arg>
+<arg>headers=${HEADERS}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:28.096" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWl...</msg>
+<status status="PASS" starttime="20240123 20:56:28.093" endtime="20240123 20:56:28.096"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>&amp;{SESSION}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20240123 20:56:28.097" level="INFO">Creating Session using : alias=ambiente, url=http://localhost:8080/api/v1, headers={'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJpYXQiOjE3MDYwNTQxODcsImV4cCI6MTcwNjA1Nzc4N30.qY0ohkHvNBfuQZdvO4zi2RKNvuqMBRqapcrsqyQDjCA'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20240123 20:56:28.097" endtime="20240123 20:56:28.098"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>&amp;{SESSION}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:28.111" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWl...</msg>
+<status status="PASS" starttime="20240123 20:56:28.109" endtime="20240123 20:56:28.111"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.077" endtime="20240123 20:56:28.112"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${RESPONSE}</var>
+<arg>alias=${SESSION.alias}</arg>
+<arg>url=${url}</arg>
+<arg>expected_status=anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20240123 20:56:28.127" level="INFO">GET Request : url=http://localhost:8080/api/v1/ong/usuario/1 
+ path_url=/api/v1/ong/usuario/1 
+ headers={'User-Agent': 'python-requests/2.29.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJpYXQiOjE3MDYwNTQxODcsImV4cCI6MTcwNjA1Nzc4N30.qY0ohkHvNBfuQZdvO4zi2RKNvuqMBRqapcrsqyQDjCA'} 
+ body=None 
+ </msg>
+<msg timestamp="20240123 20:56:28.128" level="INFO">GET Response : url=http://localhost:8080/api/v1/ong/usuario/1 
+ status=401, reason=Unauthorized 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'ETag': 'W/"48-m2D+gxNq6jVkgP86juyRxS45iTk"', 'Date': 'Tue, 23 Jan 2024 23:56:28 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"USUARIO_NAO_AUTENTICADO_OU_TOKEN_EXPIRADO","statusCode":401} 
+ </msg>
+<msg timestamp="20240123 20:56:28.128" level="INFO">${RESPONSE} = &lt;Response [401]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.113" endtime="20240123 20:56:28.129"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:28.132" level="INFO">${RESPONSE} = &lt;Response [401]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.130" endtime="20240123 20:56:28.135"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.061" endtime="20240123 20:56:28.140"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.059" endtime="20240123 20:56:28.141"/>
+</kw>
+<kw name="Então a api deverá retornar 200" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<kw name="Valida status_code" library="hooks">
+<arg>${statusCode}</arg>
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240123 20:56:28.152" level="INFO">401</msg>
+<status status="PASS" starttime="20240123 20:56:28.147" endtime="20240123 20:56:28.152"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:28.155" endtime="20240123 20:56:28.158"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<arg>${statusCode}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20240123 20:56:28.160" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20240123 20:56:28.161" level="FAIL">401 != 200</msg>
+<status status="FAIL" starttime="20240123 20:56:28.159" endtime="20240123 20:56:28.161"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.146" endtime="20240123 20:56:28.162"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.162" endtime="20240123 20:56:28.162"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.144" endtime="20240123 20:56:28.162"/>
+</kw>
+<kw name="E os dados do usuario" library="get">
+<status status="NOT RUN" starttime="20240123 20:56:28.164" endtime="20240123 20:56:28.165"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.056" endtime="20240123 20:56:28.167">401 != 200</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t7" name="CN03 - Validar busca de ONGs" line="51">
+<kw name="Quando realizo uma chamada de busca" library="get">
+<kw name="chamada_GET_ONG" library="routes">
+<arg>${Environment.base_url}/ong</arg>
+<kw name="Criar secao ong" library="hooks">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{HEADERS}</var>
+<arg>Content_Type=application/json</arg>
+<arg>authorizaton=${RETORNO_TOKENong.json()['accessToken']}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:28.177" level="INFO">&amp;{HEADERS} = { Content_Type=application/json | authorizaton=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJp...</msg>
+<status status="PASS" starttime="20240123 20:56:28.176" endtime="20240123 20:56:28.177"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{SESSION}</var>
+<arg>alias=ambiente</arg>
+<arg>url=${Environment.base_url}</arg>
+<arg>headers=${HEADERS}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:28.181" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWl...</msg>
+<status status="PASS" starttime="20240123 20:56:28.177" endtime="20240123 20:56:28.182"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>&amp;{SESSION}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20240123 20:56:28.184" level="INFO">Creating Session using : alias=ambiente, url=http://localhost:8080/api/v1, headers={'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJpYXQiOjE3MDYwNTQxODcsImV4cCI6MTcwNjA1Nzc4N30.qY0ohkHvNBfuQZdvO4zi2RKNvuqMBRqapcrsqyQDjCA'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20240123 20:56:28.182" endtime="20240123 20:56:28.184"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>&amp;{SESSION}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:28.185" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWl...</msg>
+<status status="PASS" starttime="20240123 20:56:28.184" endtime="20240123 20:56:28.187"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.176" endtime="20240123 20:56:28.189"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${RESPONSE}</var>
+<arg>alias=${SESSION.alias}</arg>
+<arg>url=${url}</arg>
+<arg>expected_status=anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20240123 20:56:28.199" level="INFO">GET Request : url=http://localhost:8080/api/v1/ong 
+ path_url=/api/v1/ong 
+ headers={'User-Agent': 'python-requests/2.29.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJpYXQiOjE3MDYwNTQxODcsImV4cCI6MTcwNjA1Nzc4N30.qY0ohkHvNBfuQZdvO4zi2RKNvuqMBRqapcrsqyQDjCA'} 
+ body=None 
+ </msg>
+<msg timestamp="20240123 20:56:28.200" level="INFO">GET Response : url=http://localhost:8080/api/v1/ong 
+ status=401, reason=Unauthorized 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'ETag': 'W/"48-m2D+gxNq6jVkgP86juyRxS45iTk"', 'Date': 'Tue, 23 Jan 2024 23:56:28 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"USUARIO_NAO_AUTENTICADO_OU_TOKEN_EXPIRADO","statusCode":401} 
+ </msg>
+<msg timestamp="20240123 20:56:28.201" level="INFO">${RESPONSE} = &lt;Response [401]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.191" endtime="20240123 20:56:28.201"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:28.204" level="INFO">${RESPONSE} = &lt;Response [401]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.202" endtime="20240123 20:56:28.204"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.174" endtime="20240123 20:56:28.204"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.174" endtime="20240123 20:56:28.207"/>
+</kw>
+<kw name="Então a api deverá retornar 200" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<kw name="Valida status_code" library="hooks">
+<arg>${statusCode}</arg>
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240123 20:56:28.231" level="INFO">401</msg>
+<status status="PASS" starttime="20240123 20:56:28.231" endtime="20240123 20:56:28.232"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:28.232" endtime="20240123 20:56:28.244"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<arg>${statusCode}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20240123 20:56:28.252" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20240123 20:56:28.256" level="FAIL">401 != 200</msg>
+<status status="FAIL" starttime="20240123 20:56:28.245" endtime="20240123 20:56:28.257"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.215" endtime="20240123 20:56:28.259"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.260" endtime="20240123 20:56:28.261"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.214" endtime="20240123 20:56:28.261"/>
+</kw>
+<kw name="E os dados da ONG" library="get">
+<status status="NOT RUN" starttime="20240123 20:56:28.262" endtime="20240123 20:56:28.263"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.172" endtime="20240123 20:56:28.265">401 != 200</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t8" name="CN01 - Validar Alteração de ong feito com sucesso" line="60">
+<kw name="Dado que possuo uma ong válida" library="put">
+<kw name="Gerar request body ong" library="bodyRequests">
+<arg>${emailong}</arg>
+<arg>${senha}</arg>
+<kw name="Get JSON ong" library="hooks">
+<var>${testFile}</var>
+<arg>postOng.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/ong/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:28.272" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:28.272" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:28.271" endtime="20240123 20:56:28.275"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.275" endtime="20240123 20:56:28.276"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.267" endtime="20240123 20:56:28.276"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${test}</var>
+<arg>${testFile}</arg>
+<arg>email</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:28.276" endtime="20240123 20:56:28.277"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${body}</var>
+<arg>${testFile}</arg>
+<arg>senha</arg>
+<arg>${senha}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:28.277" endtime="20240123 20:56:28.277"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.277" endtime="20240123 20:56:28.277"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.278" endtime="20240123 20:56:28.279"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.280" endtime="20240123 20:56:28.280"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.281" endtime="20240123 20:56:28.281"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.266" endtime="20240123 20:56:28.281"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.266" endtime="20240123 20:56:28.281"/>
+</kw>
+<kw name="Quando realizo uma chamada PUT para Alteração" library="put">
+<status status="NOT RUN" starttime="20240123 20:56:28.283" endtime="20240123 20:56:28.283"/>
+</kw>
+<kw name="Então a api deverá retornar 200" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:28.284" endtime="20240123 20:56:28.284"/>
+</kw>
+<kw name="E o dado deve ser alterado" library="put">
+<status status="NOT RUN" starttime="20240123 20:56:28.289" endtime="20240123 20:56:28.289"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.265" endtime="20240123 20:56:28.291">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json'</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t9" name="CN02 - Validar Alteração de ong feito com conta ja alterada" line="66">
+<kw name="Dado que possuo uma ong válida" library="put">
+<kw name="Gerar request body ong" library="bodyRequests">
+<arg>${emailong}</arg>
+<arg>${senha}</arg>
+<kw name="Get JSON ong" library="hooks">
+<var>${testFile}</var>
+<arg>postOng.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/ong/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:28.301" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:28.302" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:28.296" endtime="20240123 20:56:28.303"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.303" endtime="20240123 20:56:28.304"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.296" endtime="20240123 20:56:28.304"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${test}</var>
+<arg>${testFile}</arg>
+<arg>email</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:28.304" endtime="20240123 20:56:28.304"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${body}</var>
+<arg>${testFile}</arg>
+<arg>senha</arg>
+<arg>${senha}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:28.305" endtime="20240123 20:56:28.305"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.306" endtime="20240123 20:56:28.306"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.307" endtime="20240123 20:56:28.307"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.307" endtime="20240123 20:56:28.307"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.307" endtime="20240123 20:56:28.308"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.293" endtime="20240123 20:56:28.308"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.293" endtime="20240123 20:56:28.309"/>
+</kw>
+<kw name="Quando realizo uma chamada PUT para Alteração" library="put">
+<status status="NOT RUN" starttime="20240123 20:56:28.312" endtime="20240123 20:56:28.312"/>
+</kw>
+<kw name="Então a api deverá retornar 200" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:28.315" endtime="20240123 20:56:28.315"/>
+</kw>
+<kw name="E o dado deve ser alterado" library="put">
+<status status="NOT RUN" starttime="20240123 20:56:28.317" endtime="20240123 20:56:28.317"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.292" endtime="20240123 20:56:28.318">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOng.json'</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t10" name="CN03 - Validar Alteração de ong feito com email sem @" line="72">
+<kw name="Dado que tento alterar uma ong com email sem @" library="put">
+<kw name="Gerar request body login sem arroba" library="bodyRequests">
+<arg>${emailsem@}</arg>
+<arg>${senha}</arg>
+<kw name="Get JSON login" library="hooks">
+<var>${testFile}</var>
+<arg>bodyLoginSemArroba.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/login/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:28.331" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginSemArroba.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginSemArroba.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:28.331" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginSemArroba.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:28.330" endtime="20240123 20:56:28.333"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.336" endtime="20240123 20:56:28.337"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.329" endtime="20240123 20:56:28.338"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${test}</var>
+<arg>${testFile}</arg>
+<arg>email</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:28.339" endtime="20240123 20:56:28.342"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${body}</var>
+<arg>${testFile}</arg>
+<arg>senha</arg>
+<arg>${senha}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:28.343" endtime="20240123 20:56:28.343"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.343" endtime="20240123 20:56:28.343"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.344" endtime="20240123 20:56:28.344"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY_LOGIN}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.344" endtime="20240123 20:56:28.344"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.345" endtime="20240123 20:56:28.345"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.326" endtime="20240123 20:56:28.345"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.325" endtime="20240123 20:56:28.345"/>
+</kw>
+<kw name="Quando realizo uma chamada PUT para Alteração" library="put">
+<status status="NOT RUN" starttime="20240123 20:56:28.347" endtime="20240123 20:56:28.348"/>
+</kw>
+<kw name="Então a api deverá retornar 400" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:28.349" endtime="20240123 20:56:28.349"/>
+</kw>
+<kw name="E o dado não deve ser alterado" library="put">
+<status status="NOT RUN" starttime="20240123 20:56:28.351" endtime="20240123 20:56:28.351"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.321" endtime="20240123 20:56:28.354">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/login/bodyLoginSemArroba.json'</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t11" name="CN04 - Validar Alteração de ong feito com cep e cpf como numeros" line="78">
+<kw name="Dado que tento alterar uma ong com cep e cpf como numeros" library="put">
+<kw name="Gerar request body ong com cep e cpf como numeros" library="bodyRequests">
+<arg>${email}</arg>
+<arg>${senha}</arg>
+<kw name="Get JSON ong" library="hooks">
+<var>${testFile}</var>
+<arg>postOngNoString.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/ong/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:28.363" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOngNoString.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOngNoString.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:28.364" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOngNoString.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:28.363" endtime="20240123 20:56:28.365"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.366" endtime="20240123 20:56:28.366"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.362" endtime="20240123 20:56:28.366"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${test}</var>
+<arg>${testFile}</arg>
+<arg>email</arg>
+<arg>${email}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:28.367" endtime="20240123 20:56:28.367"/>
+</kw>
+<kw name="Put JSON" library="hooks">
+<var>${body}</var>
+<arg>${testFile}</arg>
+<arg>senha</arg>
+<arg>${senha}</arg>
+<status status="NOT RUN" starttime="20240123 20:56:28.367" endtime="20240123 20:56:28.367"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.369" endtime="20240123 20:56:28.372"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.373" endtime="20240123 20:56:28.373"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.374" endtime="20240123 20:56:28.374"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.502" endtime="20240123 20:56:28.503"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.362" endtime="20240123 20:56:28.505"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.361" endtime="20240123 20:56:28.505"/>
+</kw>
+<kw name="Quando realizo uma chamada PUT para Alteração" library="put">
+<status status="NOT RUN" starttime="20240123 20:56:28.507" endtime="20240123 20:56:28.510"/>
+</kw>
+<kw name="Então a api deverá retornar 400" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:28.511" endtime="20240123 20:56:28.512"/>
+</kw>
+<kw name="E o dado não deve ser alterado" library="put">
+<status status="NOT RUN" starttime="20240123 20:56:28.518" endtime="20240123 20:56:28.519"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.360" endtime="20240123 20:56:28.524">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/postOngNoString.json'</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t12" name="CN01 - Validar DELETE de ONGs" line="88">
+<kw name="Quando realizo uma chamada de delete das ONGs" library="del">
+<kw name="chamada_DEL_ong" library="routes">
+<arg>${Environment.base_url}ong</arg>
+<kw name="Criar secao ong" library="hooks">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{HEADERS}</var>
+<arg>Content_Type=application/json</arg>
+<arg>authorizaton=${RETORNO_TOKENong.json()['accessToken']}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:28.544" level="INFO">&amp;{HEADERS} = { Content_Type=application/json | authorizaton=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJp...</msg>
+<status status="PASS" starttime="20240123 20:56:28.541" endtime="20240123 20:56:28.544"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{SESSION}</var>
+<arg>alias=ambiente</arg>
+<arg>url=${Environment.base_url}</arg>
+<arg>headers=${HEADERS}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:28.547" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWl...</msg>
+<status status="PASS" starttime="20240123 20:56:28.545" endtime="20240123 20:56:28.547"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>&amp;{SESSION}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20240123 20:56:28.548" level="INFO">Creating Session using : alias=ambiente, url=http://localhost:8080/api/v1, headers={'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJpYXQiOjE3MDYwNTQxODcsImV4cCI6MTcwNjA1Nzc4N30.qY0ohkHvNBfuQZdvO4zi2RKNvuqMBRqapcrsqyQDjCA'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20240123 20:56:28.547" endtime="20240123 20:56:28.551"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>&amp;{SESSION}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:28.554" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWl...</msg>
+<status status="PASS" starttime="20240123 20:56:28.551" endtime="20240123 20:56:28.554"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.535" endtime="20240123 20:56:28.555"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${RESPONSE}</var>
+<arg>alias=${SESSION.alias}</arg>
+<arg>url=${url}</arg>
+<arg>expected_status=anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20240123 20:56:28.569" level="INFO">GET Request : url=http://localhost:8080/api/v1ong 
+ path_url=/api/v1ong 
+ headers={'User-Agent': 'python-requests/2.29.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content_Type': 'application/json', 'authorizaton': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjEsImVtYWlsIjoib25nXzFfQGVtYWlsLmNvbSIsIm5vbWUiOiJPbmciLCJ0aXBvVXN1YXJpbyI6MiwiaW1hZ2VtIjpudWxsLCJpYXQiOjE3MDYwNTQxODcsImV4cCI6MTcwNjA1Nzc4N30.qY0ohkHvNBfuQZdvO4zi2RKNvuqMBRqapcrsqyQDjCA'} 
+ body=None 
+ </msg>
+<msg timestamp="20240123 20:56:28.571" level="INFO">GET Response : url=http://localhost:8080/api/v1ong 
+ status=404, reason=Not Found 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'ETag': 'W/"48-gVmoXg0vWRt4hqS0ekn5ksn4D4c"', 'Date': 'Tue, 23 Jan 2024 23:56:28 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"Cannot GET /api/v1ong","error":"Not Found","statusCode":404} 
+ </msg>
+<msg timestamp="20240123 20:56:28.574" level="INFO">${RESPONSE} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.556" endtime="20240123 20:56:28.574"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:28.579" level="INFO">${RESPONSE} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.577" endtime="20240123 20:56:28.580"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.533" endtime="20240123 20:56:28.580"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.532" endtime="20240123 20:56:28.581"/>
+</kw>
+<kw name="Então a api deverá retornar 200" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<kw name="Valida status_code" library="hooks">
+<arg>${statusCode}</arg>
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240123 20:56:28.590" level="INFO">404</msg>
+<status status="PASS" starttime="20240123 20:56:28.585" endtime="20240123 20:56:28.590"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:28.591" endtime="20240123 20:56:28.592"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<arg>${statusCode}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20240123 20:56:28.601" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20240123 20:56:28.601" level="FAIL">404 != 200</msg>
+<status status="FAIL" starttime="20240123 20:56:28.595" endtime="20240123 20:56:28.604"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.583" endtime="20240123 20:56:28.605"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.607" endtime="20240123 20:56:28.607"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.582" endtime="20240123 20:56:28.609"/>
+</kw>
+<kw name="E a ong deve ser deletada" library="del">
+<status status="NOT RUN" starttime="20240123 20:56:28.610" endtime="20240123 20:56:28.611"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.531" endtime="20240123 20:56:28.614">404 != 200</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t13" name="CN02 - Validar DELETE de ONGs com usuario nao autenticado" line="94">
+<kw name="Quando realizo uma chamada de delete das ONGs com usuario nao autenticado" library="del">
+<kw name="chamada_DEL" library="routes">
+<arg>${Environment.base_url}ong</arg>
+<kw name="Criar secao" library="hooks">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{HEADERS}</var>
+<arg>Content_Type=application/json</arg>
+<arg>authorizaton=Bearer ${Environment.token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:28.626" level="INFO">&amp;{HEADERS} = { Content_Type=application/json | authorizaton=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFudGVfMV9AZW1haWwuY29tIiwibm9tZSI6IkVESVRBRE8iLCJ0aXBvVXN1YXJpbyI6Mywia...</msg>
+<status status="PASS" starttime="20240123 20:56:28.624" endtime="20240123 20:56:28.627"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{SESSION}</var>
+<arg>alias=ambiente</arg>
+<arg>url=${Environment.base_url}</arg>
+<arg>headers=${HEADERS}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:28.631" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFu...</msg>
+<status status="PASS" starttime="20240123 20:56:28.628" endtime="20240123 20:56:28.631"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>&amp;{SESSION}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20240123 20:56:28.637" level="INFO">Creating Session using : alias=ambiente, url=http://localhost:8080/api/v1, headers={'Content_Type': 'application/json', 'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFudGVfMV9AZW1haWwuY29tIiwibm9tZSI6IkVESVRBRE8iLCJ0aXBvVXN1YXJpbyI6MywiaWF0IjoxNzA0OTI2NzI3LCJleHAiOjE3MDQ5MzAzMjd9.959AaC8Ed_u9BaMC2iOJFzV3t6k4VmYxaj7US2yI6FE'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20240123 20:56:28.632" endtime="20240123 20:56:28.640"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>&amp;{SESSION}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:28.645" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFu...</msg>
+<status status="PASS" starttime="20240123 20:56:28.644" endtime="20240123 20:56:28.647"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.624" endtime="20240123 20:56:28.648"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${RESPONSE}</var>
+<arg>alias=${SESSION.alias}</arg>
+<arg>url=${url}</arg>
+<arg>expected_status=anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20240123 20:56:28.657" level="INFO">GET Request : url=http://localhost:8080/api/v1ong 
+ path_url=/api/v1ong 
+ headers={'User-Agent': 'python-requests/2.29.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content_Type': 'application/json', 'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFudGVfMV9AZW1haWwuY29tIiwibm9tZSI6IkVESVRBRE8iLCJ0aXBvVXN1YXJpbyI6MywiaWF0IjoxNzA0OTI2NzI3LCJleHAiOjE3MDQ5MzAzMjd9.959AaC8Ed_u9BaMC2iOJFzV3t6k4VmYxaj7US2yI6FE'} 
+ body=None 
+ </msg>
+<msg timestamp="20240123 20:56:28.658" level="INFO">GET Response : url=http://localhost:8080/api/v1ong 
+ status=404, reason=Not Found 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'ETag': 'W/"48-gVmoXg0vWRt4hqS0ekn5ksn4D4c"', 'Date': 'Tue, 23 Jan 2024 23:56:28 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"Cannot GET /api/v1ong","error":"Not Found","statusCode":404} 
+ </msg>
+<msg timestamp="20240123 20:56:28.658" level="INFO">${RESPONSE} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.648" endtime="20240123 20:56:28.658"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:28.659" level="INFO">${RESPONSE} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.659" endtime="20240123 20:56:28.660"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.623" endtime="20240123 20:56:28.661"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.622" endtime="20240123 20:56:28.662"/>
+</kw>
+<kw name="Então a api deverá retornar 401" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<kw name="Valida status_code" library="hooks">
+<arg>${statusCode}</arg>
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240123 20:56:28.675" level="INFO">404</msg>
+<status status="PASS" starttime="20240123 20:56:28.672" endtime="20240123 20:56:28.676"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:28.677" endtime="20240123 20:56:28.714"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<arg>${statusCode}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20240123 20:56:28.717" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20240123 20:56:28.717" level="FAIL">404 != 401</msg>
+<status status="FAIL" starttime="20240123 20:56:28.715" endtime="20240123 20:56:28.721"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.668" endtime="20240123 20:56:28.722"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.722" endtime="20240123 20:56:28.722"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.667" endtime="20240123 20:56:28.723"/>
+</kw>
+<kw name="E a ong não deve ser deletada" library="del">
+<status status="NOT RUN" starttime="20240123 20:56:28.726" endtime="20240123 20:56:28.727"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.620" endtime="20240123 20:56:28.727">404 != 401</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t14" name="CN03 - Validar DELETE de ONGs com usuario nao autorizado" line="100">
+<kw name="Quando realizo uma chamada de delete das ONGs com usuario nao autorizado" library="del">
+<kw name="chamada_DEL" library="routes">
+<arg>${Environment.base_url}ong</arg>
+<kw name="Criar secao" library="hooks">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{HEADERS}</var>
+<arg>Content_Type=application/json</arg>
+<arg>authorizaton=Bearer ${Environment.token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:28.734" level="INFO">&amp;{HEADERS} = { Content_Type=application/json | authorizaton=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFudGVfMV9AZW1haWwuY29tIiwibm9tZSI6IkVESVRBRE8iLCJ0aXBvVXN1YXJpbyI6Mywia...</msg>
+<status status="PASS" starttime="20240123 20:56:28.732" endtime="20240123 20:56:28.734"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{SESSION}</var>
+<arg>alias=ambiente</arg>
+<arg>url=${Environment.base_url}</arg>
+<arg>headers=${HEADERS}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:28.737" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFu...</msg>
+<status status="PASS" starttime="20240123 20:56:28.735" endtime="20240123 20:56:28.738"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>&amp;{SESSION}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20240123 20:56:28.740" level="INFO">Creating Session using : alias=ambiente, url=http://localhost:8080/api/v1, headers={'Content_Type': 'application/json', 'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFudGVfMV9AZW1haWwuY29tIiwibm9tZSI6IkVESVRBRE8iLCJ0aXBvVXN1YXJpbyI6MywiaWF0IjoxNzA0OTI2NzI3LCJleHAiOjE3MDQ5MzAzMjd9.959AaC8Ed_u9BaMC2iOJFzV3t6k4VmYxaj7US2yI6FE'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20240123 20:56:28.738" endtime="20240123 20:56:28.743"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>&amp;{SESSION}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:28.744" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFu...</msg>
+<status status="PASS" starttime="20240123 20:56:28.744" endtime="20240123 20:56:28.745"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.731" endtime="20240123 20:56:28.745"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${RESPONSE}</var>
+<arg>alias=${SESSION.alias}</arg>
+<arg>url=${url}</arg>
+<arg>expected_status=anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20240123 20:56:28.759" level="INFO">GET Request : url=http://localhost:8080/api/v1ong 
+ path_url=/api/v1ong 
+ headers={'User-Agent': 'python-requests/2.29.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content_Type': 'application/json', 'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFudGVfMV9AZW1haWwuY29tIiwibm9tZSI6IkVESVRBRE8iLCJ0aXBvVXN1YXJpbyI6MywiaWF0IjoxNzA0OTI2NzI3LCJleHAiOjE3MDQ5MzAzMjd9.959AaC8Ed_u9BaMC2iOJFzV3t6k4VmYxaj7US2yI6FE'} 
+ body=None 
+ </msg>
+<msg timestamp="20240123 20:56:28.759" level="INFO">GET Response : url=http://localhost:8080/api/v1ong 
+ status=404, reason=Not Found 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '72', 'ETag': 'W/"48-gVmoXg0vWRt4hqS0ekn5ksn4D4c"', 'Date': 'Tue, 23 Jan 2024 23:56:28 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"Cannot GET /api/v1ong","error":"Not Found","statusCode":404} 
+ </msg>
+<msg timestamp="20240123 20:56:28.759" level="INFO">${RESPONSE} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.745" endtime="20240123 20:56:28.760"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:28.761" level="INFO">${RESPONSE} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.760" endtime="20240123 20:56:28.761"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.729" endtime="20240123 20:56:28.761"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.728" endtime="20240123 20:56:28.762"/>
+</kw>
+<kw name="Então a api deverá retornar 403" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<kw name="Valida status_code" library="hooks">
+<arg>${statusCode}</arg>
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240123 20:56:28.766" level="INFO">404</msg>
+<status status="PASS" starttime="20240123 20:56:28.765" endtime="20240123 20:56:28.766"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:28.767" endtime="20240123 20:56:28.773"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<arg>${statusCode}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20240123 20:56:28.776" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<msg timestamp="20240123 20:56:28.776" level="FAIL">404 != 403</msg>
+<status status="FAIL" starttime="20240123 20:56:28.774" endtime="20240123 20:56:28.777"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.764" endtime="20240123 20:56:28.777"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.778" endtime="20240123 20:56:28.778"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.763" endtime="20240123 20:56:28.780"/>
+</kw>
+<kw name="E a ong não deve ser deletada" library="del">
+<status status="NOT RUN" starttime="20240123 20:56:28.781" endtime="20240123 20:56:28.783"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.727" endtime="20240123 20:56:28.784">404 != 403</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t15" name="CN04 - Validar DELETE de ONGs com usuario não encontrado com o id informado" line="106">
+<kw name="Quando realizo uma chamada de delete das ONGs com usuario não encontrado com o id informado" library="del">
+<kw name="chamada_DEL" library="routes">
+<arg>${Environment.base_url}ong/usuario/1</arg>
+<kw name="Criar secao" library="hooks">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{HEADERS}</var>
+<arg>Content_Type=application/json</arg>
+<arg>authorizaton=Bearer ${Environment.token}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:28.794" level="INFO">&amp;{HEADERS} = { Content_Type=application/json | authorizaton=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFudGVfMV9AZW1haWwuY29tIiwibm9tZSI6IkVESVRBRE8iLCJ0aXBvVXN1YXJpbyI6Mywia...</msg>
+<status status="PASS" starttime="20240123 20:56:28.792" endtime="20240123 20:56:28.796"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{SESSION}</var>
+<arg>alias=ambiente</arg>
+<arg>url=${Environment.base_url}</arg>
+<arg>headers=${HEADERS}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20240123 20:56:28.797" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFu...</msg>
+<status status="PASS" starttime="20240123 20:56:28.796" endtime="20240123 20:56:28.798"/>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<arg>&amp;{SESSION}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20240123 20:56:28.799" level="INFO">Creating Session using : alias=ambiente, url=http://localhost:8080/api/v1, headers={'Content_Type': 'application/json', 'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFudGVfMV9AZW1haWwuY29tIiwibm9tZSI6IkVESVRBRE8iLCJ0aXBvVXN1YXJpbyI6MywiaWF0IjoxNzA0OTI2NzI3LCJleHAiOjE3MDQ5MzAzMjd9.959AaC8Ed_u9BaMC2iOJFzV3t6k4VmYxaj7US2yI6FE'},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20240123 20:56:28.798" endtime="20240123 20:56:28.799"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>&amp;{SESSION}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:28.800" level="INFO">&amp;{SESSION} = { alias=ambiente | url=http://localhost:8080/api/v1 | headers={'Content_Type': 'application/json', 'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFu...</msg>
+<status status="PASS" starttime="20240123 20:56:28.799" endtime="20240123 20:56:28.801"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.790" endtime="20240123 20:56:28.801"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${RESPONSE}</var>
+<arg>alias=${SESSION.alias}</arg>
+<arg>url=${url}</arg>
+<arg>expected_status=anything</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20240123 20:56:28.813" level="INFO">GET Request : url=http://localhost:8080/api/v1ong/usuario/1 
+ path_url=/api/v1ong/usuario/1 
+ headers={'User-Agent': 'python-requests/2.29.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content_Type': 'application/json', 'authorizaton': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZFVzdWFyaW8iOjIsImVtYWlsIjoiYWRvdGFudGVfMV9AZW1haWwuY29tIiwibm9tZSI6IkVESVRBRE8iLCJ0aXBvVXN1YXJpbyI6MywiaWF0IjoxNzA0OTI2NzI3LCJleHAiOjE3MDQ5MzAzMjd9.959AaC8Ed_u9BaMC2iOJFzV3t6k4VmYxaj7US2yI6FE'} 
+ body=None 
+ </msg>
+<msg timestamp="20240123 20:56:28.813" level="INFO">GET Response : url=http://localhost:8080/api/v1ong/usuario/1 
+ status=404, reason=Not Found 
+ headers={'X-Powered-By': 'Express', 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '82', 'ETag': 'W/"52-QGSrz5bi//z7xb0EMpLOPwzB8Ek"', 'Date': 'Tue, 23 Jan 2024 23:56:28 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"message":"Cannot GET /api/v1ong/usuario/1","error":"Not Found","statusCode":404} 
+ </msg>
+<msg timestamp="20240123 20:56:28.814" level="INFO">${RESPONSE} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.801" endtime="20240123 20:56:28.814"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20240123 20:56:28.815" level="INFO">${RESPONSE} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.814" endtime="20240123 20:56:28.815"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.788" endtime="20240123 20:56:28.816"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.788" endtime="20240123 20:56:28.816"/>
+</kw>
+<kw name="Então a api deverá retornar 404" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<kw name="Valida status_code" library="hooks">
+<arg>${statusCode}</arg>
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240123 20:56:28.825" level="INFO">404</msg>
+<status status="PASS" starttime="20240123 20:56:28.823" endtime="20240123 20:56:28.825"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:28.825" endtime="20240123 20:56:28.829"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${RESPONSE.status_code}</arg>
+<arg>${statusCode}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20240123 20:56:28.832" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20240123 20:56:28.830" endtime="20240123 20:56:28.832"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.819" endtime="20240123 20:56:28.833"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240123 20:56:28.833" endtime="20240123 20:56:28.839"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.817" endtime="20240123 20:56:28.841"/>
+</kw>
+<kw name="E a ong não deve ser deletada" library="del">
+<kw name="validaReponse" library="hooks">
+<arg>${response}</arg>
+<if>
+<branch type="IF" condition="${RESPONSE.status_code} == 200">
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.846" endtime="20240123 20:56:28.846"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE.json()}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.847" endtime="20240123 20:56:28.847"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${Ret_String}</var>
+<arg>${RESPONSE}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.848" endtime="20240123 20:56:28.848"/>
+</kw>
+<status status="NOT RUN" starttime="20240123 20:56:28.845" endtime="20240123 20:56:28.848"/>
+</branch>
+<branch type="ELSE IF" condition="${RESPONSE.status_code} == 201">
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.851" endtime="20240123 20:56:28.851"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE}\[mensagem]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.851" endtime="20240123 20:56:28.852"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${Ret_String}</var>
+<arg>${RESPONSE}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.853" endtime="20240123 20:56:28.854"/>
+</kw>
+<status status="NOT RUN" starttime="20240123 20:56:28.849" endtime="20240123 20:56:28.854"/>
+</branch>
+<branch type="ELSE IF" condition="${RESPONSE.status_code} == 204">
+<kw name="Log" library="BuiltIn">
+<arg>"204 - Sem Retorno"</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.856" endtime="20240123 20:56:28.856"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>"204 - Sem Retorno"</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.857" endtime="20240123 20:56:28.858"/>
+</kw>
+<status status="NOT RUN" starttime="20240123 20:56:28.855" endtime="20240123 20:56:28.858"/>
+</branch>
+<branch type="ELSE IF" condition="${RESPONSE.status_code} == 400">
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.859" endtime="20240123 20:56:28.861"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE}\[mensagem]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.861" endtime="20240123 20:56:28.862"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${Ret_String}</var>
+<arg>${RESPONSE}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.862" endtime="20240123 20:56:28.863"/>
+</kw>
+<status status="NOT RUN" starttime="20240123 20:56:28.858" endtime="20240123 20:56:28.864"/>
+</branch>
+<branch type="ELSE IF" condition="${RESPONSE.status_code} == 401">
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.871" endtime="20240123 20:56:28.871"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${RESPONSE}\[mensagem]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.873" endtime="20240123 20:56:28.874"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${Ret_String}</var>
+<arg>${RESPONSE}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.874" endtime="20240123 20:56:28.874"/>
+</kw>
+<status status="NOT RUN" starttime="20240123 20:56:28.866" endtime="20240123 20:56:28.875"/>
+</branch>
+<branch type="ELSE">
+<kw name="Log" library="BuiltIn">
+<arg>${RESPONSE}\[mensagem]</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240123 20:56:28.878" level="INFO">&lt;Response [404]&gt;[mensagem]</msg>
+<status status="PASS" starttime="20240123 20:56:28.876" endtime="20240123 20:56:28.880"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.875" endtime="20240123 20:56:28.881"/>
+</branch>
+<status status="PASS" starttime="20240123 20:56:28.845" endtime="20240123 20:56:28.881"/>
+</if>
+<status status="PASS" starttime="20240123 20:56:28.844" endtime="20240123 20:56:28.881"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.843" endtime="20240123 20:56:28.881"/>
+</kw>
+<status status="PASS" starttime="20240123 20:56:28.785" endtime="20240123 20:56:28.885"/>
+</test>
+<test id="s1-s1-s1-s1-s2-t16" name="CN01 - Validar criação de status da ong feito com sucesso" line="125">
+<kw name="Dado que possuo um status de ong" library="post">
+<kw name="Gerar request body statusOng" library="bodyRequests">
+<kw name="Get JSON ong" library="hooks">
+<var>${testFile}</var>
+<arg>statusong.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/ong/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:28.908" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/statusong.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/statusong.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:28.909" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/statusong.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:28.903" endtime="20240123 20:56:28.909"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.910" endtime="20240123 20:56:28.910"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.901" endtime="20240123 20:56:28.910"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.911" endtime="20240123 20:56:28.911"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.911" endtime="20240123 20:56:28.911"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.912" endtime="20240123 20:56:28.912"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.913" endtime="20240123 20:56:28.913"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.899" endtime="20240123 20:56:28.914"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.898" endtime="20240123 20:56:28.914"/>
+</kw>
+<kw name="Quando realizo uma chamada POST na rota de cria status" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:28.917" endtime="20240123 20:56:28.918"/>
+</kw>
+<kw name="Então a api deverá retornar 201" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:28.919" endtime="20240123 20:56:28.922"/>
+</kw>
+<kw name="E a criacao deve ser feita com sucesso" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:28.923" endtime="20240123 20:56:28.924"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.888" endtime="20240123 20:56:28.926">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/statusong.json'</status>
+</test>
+<test id="s1-s1-s1-s1-s2-t17" name="CN02 - Validar criação de status da ong ja criado" line="131">
+<kw name="Dado que possuo um status de ong mas ja criado" library="post">
+<kw name="Gerar request body statusOng" library="bodyRequests">
+<kw name="Get JSON ong" library="hooks">
+<var>${testFile}</var>
+<arg>statusong.json</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${body}</var>
+<arg>./petsalvo-back-end-automation/tests/testCases/database/ong/${massa}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240123 20:56:28.940" level="INFO" html="true">Getting file '&lt;a href="file:///Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/statusong.json"&gt;/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/statusong.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240123 20:56:28.941" level="FAIL">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/statusong.json'</msg>
+<status status="FAIL" starttime="20240123 20:56:28.932" endtime="20240123 20:56:28.941"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads($body)</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.942" endtime="20240123 20:56:28.942"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.931" endtime="20240123 20:56:28.943"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.945" endtime="20240123 20:56:28.946"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.946" endtime="20240123 20:56:28.947"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${BODY}</var>
+<arg>${body}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.947" endtime="20240123 20:56:28.947"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${BODY}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240123 20:56:28.947" endtime="20240123 20:56:28.947"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.929" endtime="20240123 20:56:28.948"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.928" endtime="20240123 20:56:28.948"/>
+</kw>
+<kw name="Quando realizo uma chamada POST na rota de cria status" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:28.953" endtime="20240123 20:56:28.953"/>
+</kw>
+<kw name="Então a api deverá retornar 400" library="post" sourcename="Então a api deverá retornar ${statusCode}">
+<status status="NOT RUN" starttime="20240123 20:56:28.956" endtime="20240123 20:56:28.957"/>
+</kw>
+<kw name="E a criacao nao deve ser feita com sucesso" library="post">
+<status status="NOT RUN" starttime="20240123 20:56:28.957" endtime="20240123 20:56:28.958"/>
+</kw>
+<status status="FAIL" starttime="20240123 20:56:28.927" endtime="20240123 20:56:28.962">FileNotFoundError: [Errno 2] No such file or directory: '/Users/maldaner/Desktop/bootcamp/mba-es-25-grupo-04/petsalvo-back-end-automation/petsalvo-back-end-automation/tests/testCases/database/ong/statusong.json'</status>
+</test>
+<doc>Casos de teste da API de ONGs</doc>
+<status status="FAIL" starttime="20240123 20:56:27.393" endtime="20240123 20:56:28.964"/>
+</suite>
+<status status="FAIL" starttime="20240123 20:56:26.963" endtime="20240123 20:56:28.974"/>
+</suite>
+<status status="FAIL" starttime="20240123 20:56:26.952" endtime="20240123 20:56:28.982"/>
+</suite>
+<status status="FAIL" starttime="20240123 20:56:26.946" endtime="20240123 20:56:28.992"/>
+</suite>
+<status status="FAIL" starttime="20240123 20:56:26.906" endtime="20240123 20:56:28.999"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="19" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="2" fail="19" skip="0" id="s1" name="Petsalvo-Back-End-Automation">Petsalvo-Back-End-Automation</stat>
+<stat pass="2" fail="19" skip="0" id="s1-s1" name="Tests">Petsalvo-Back-End-Automation.Tests</stat>
+<stat pass="2" fail="19" skip="0" id="s1-s1-s1" name="TestCases">Petsalvo-Back-End-Automation.Tests.TestCases</stat>
+<stat pass="2" fail="19" skip="0" id="s1-s1-s1-s1" name="Tests">Petsalvo-Back-End-Automation.Tests.TestCases.Tests</stat>
+<stat pass="0" fail="4" skip="0" id="s1-s1-s1-s1-s1" name="Login">Petsalvo-Back-End-Automation.Tests.TestCases.Tests.Login</stat>
+<stat pass="2" fail="15" skip="0" id="s1-s1-s1-s1-s2" name="Ongs">Petsalvo-Back-End-Automation.Tests.TestCases.Tests.Ongs</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
