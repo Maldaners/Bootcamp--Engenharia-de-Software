@@ -1,0 +1,21 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+    commands:
+      - pip install robotframework
+      - pip install robotframework-requests
+      - pip install robotframework-jsonlibrary
+
+  build:
+    commands:
+      - cd tests
+      - cd testCases
+      - robot -x junit.xml -N "LOG Cenarios de teste APIs" -d reports tests/*.robot
+
+artifacts:
+  base-directory: tests/testCases/reports
+  files:
+    - 'junit.xml'

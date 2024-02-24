@@ -1,0 +1,59 @@
+{
+    "usuario": {
+        "email": "ong_700_@email.com",
+        "senha": "Abcd@1234",
+        "nome": "Ong",
+        "telefone": "11963852741",
+        "termos": true
+    },
+    "site": "www.ong.com.br",
+    "cnpj": "12345678910111",
+    "endereco": {
+        "cep": "1234520",
+        "rua": "Rua do SBT",
+        "bairro": "Vila do Chaves",
+        "numero": 71,
+        "cidade": "Santos",
+        "estado": "São Paulo",
+        "complemento": "De frente com a praia"
+    },
+    "status": [
+        {
+            "nome": "Aceita Ração"
+        },
+        {
+            "nome": "Aceita Pets"
+        },
+        {
+            "nome": "Aceita Voluntários"
+        },
+        {
+            "nome": "Aceita petiscos"
+        },
+        {
+            "nome": "Aceita coleiras"
+        }
+    ],
+    "pix": [
+        {
+            "tipoChave": 1,
+            "chave": "82734750007"
+        },
+        {
+            "tipoChave": 2,
+            "chave": "25128954000105"
+        },
+        {
+            "tipoChave": 3,
+            "chave": "011987654321"
+        },
+        {
+            "tipoChave": 4,
+            "chave": "chave_pix@ong.com.br"
+        },
+        {
+            "tipoChave": 5,
+            "chave": "dfa487afgadfa4k998adfa445cdgaa"
+        }
+    ]
+}

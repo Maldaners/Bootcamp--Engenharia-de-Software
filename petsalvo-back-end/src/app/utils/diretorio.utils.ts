@@ -1,8 +1,0 @@
-require('dotenv').config();
-
-export const DIRETORIO_BASE = process.env.DIRETORIO_BASE;
-export const DIRETORIO_IMAGENS_BASE = DIRETORIO_BASE + process.env.DIRETORIO_IMAGENS_BASE;
-export const DIRETORIO_IMAGENS_USUARIO = DIRETORIO_IMAGENS_BASE + process.env.DIRETORIO_IMAGENS_USUARIO;
-export const DIRETORIO_IMAGENS_PET = DIRETORIO_IMAGENS_BASE + process.env.DIRETORIO_IMAGENS_PET;
-
-export const DIRETORIO_IMAGENS_NOME_PASTA = process.env.DIRETORIO_IMAGENS_BASE.replaceAll('[./\\]', '');
